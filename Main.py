@@ -6,129 +6,6 @@ import string
 from nltk.corpus import wordnet
 import fileinput
 
-def CE(QA, A):
-    Q = ""
-    #QA = "bread"
-    #A = "colonist"
-    not_include = "malevolent"
-    i = 0
-    x = ""
-    i2 = 0
-    i = 0
-    j = 0
-    z = 0
-
-    syn = list()
-
-    QAE = QA.lower()
-    AE = A.lower()
-
-    AI = AE.translate(str.maketrans('', '', string.punctuation))
-    QAI = QAE.translate(str.maketrans('', '', string.punctuation))
-    print(AI)
-    QA1 = QAI.split()
-    A1 = AI.split()
-
-    KEYS = open("KEYWORD.txt", 'r')
-    KEY1 = KEYS.read()
-
-    KEYWORD = KEY1.split()
-    # print(KEYWORD)
-
-    # Keyword Parser
-
-    AKEY = [t for t in A1 if t not in KEYWORD]
-    QAKEY = [t for t in QA1 if t not in KEYWORD]
-
-    # print(KeywordA)
-
-    result = all(elem in A1 for elem in QA1)
-    result1 = all(elem in QA1 for elem in A1)
-
-    keyresult = all(elem in QAKEY for elem in AKEY)
-    keyresult1 = all(elem in AKEY for elem in QAKEY)
-
-    print(AKEY)
-    print(QAKEY)
-
-    if "not" in QA1 and "not" not in A1 or "Didn't" in QA1 and "Didn't" not in A1 or "not" in A1 and "not" not in QA1 or "Didn't" in A1 and "Didn't" not in QA1:
-        x = 'Incorrect'
-
-    elif result == True and result1 == True:
-        print(result, "RES")
-        x = "Correct"
-
-    else:
-        # all the keyword are equal
-        if keyresult == True and keyresult1 == True:
-            x = "Correct"
-            print(keyresult, "KEY")
-            print(keyresult1)
-
-        else:
-            # synonym parseing
-            i3 = 0
-            i2 = 0
-            i = 0
-            j = 0
-            z = 0
-            syn = list()
-
-    # This is the slower
-    # get all synonyms for every elem in list by iterating [+i]
-    while i < len(AKEY):
-        start_time = time.time()
-        for synset in wordnet.synsets(AKEY[0 + i]):
-            for lemma in synset.lemmas():
-                syn.append(lemma.name())
-        i += 1
-        end_time = time.time()
-        print("total time taken this loop: ", end_time - start_time)
-    for i in AKEY:
-        syn.append(i)
-    if not_include in syn:
-        syn.remove(not_include)
-        print("removed:1")
-    print("Hey" + str(syn))
-    if not_include in syn:
-        syn.remove(not_include)
-        print("removed:1")
-
-    # check if they match, try every synonym made with AKEY with every word in QAKEY
-
-    while i2 < len(QAKEY):
-
-        if len(QAKEY) != len(AKEY):
-            x = "Incorrect"
-
-            break
-        elif len(syn) == 0:
-            x = "Incorrect"
-            break
-        else:
-            while z < len(syn):
-                if syn[0 + z] == QAKEY[0 + j]:
-                    print(syn[z])
-                    print(QAKEY[j], QAKEY)
-                    j += 1
-                    i2 += 1
-                    z = 0
-                    break
-                else:
-                    z += 1
-
-                if z == len(syn):
-                    x = "Incorrect"
-                    i2 = len(QAKEY) + 2
-                    break
-
-            if i2 < len(QAKEY):
-                x = "Incorrect"
-
-            if i2 == len(QAKEY):
-                x = "Correct"
-    print(x)
-    return x
 
 
 def know(statement):
@@ -499,19 +376,8 @@ def verify(input):
    SV = input
 
    search(SV)
-
-
-
-   #search variable = SV
-
-   #CE(SV, MS)
-
-
-
-
    print(line1)
 
-   #UPGRADE TO USE CE
    if SV in line1:
        x = "Correct"
 
