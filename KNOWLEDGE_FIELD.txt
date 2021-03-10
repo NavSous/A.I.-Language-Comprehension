@@ -1,9 +1,1 @@
 
-
-('the year is 2020', 'year', 'Attribute:2020', 0, datetime.datetime(2020, 3, 8, 11, 21, 1, 574675))
-
-('israel is on earth', 'israel', 'Attribute:Earth', 0, datetime.datetime(2020, 3, 8, 11, 22, 10, 42365))
-
-('the sky is blue', 'sky', 'Attribute:blue', 0, datetime.datetime(2020, 4, 21, 12, 32, 0, 173018))
-
-('pie is good', 'pie', 'Attribute:good', 1, datetime.datetime(2020, 5, 12, 8, 37, 40, 274174))
