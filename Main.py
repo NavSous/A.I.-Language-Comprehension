@@ -804,5 +804,3 @@ def answer(question, phrase):
         else:
             print("You entered ",question)
             print("That is not a question")
-
-CE("pie", "evil")
